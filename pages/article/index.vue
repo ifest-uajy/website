@@ -29,7 +29,7 @@ import directus from '@/plugins/directus'
 import moment from 'moment'
 
 export default {
-  name: 'Index',
+  name: 'Home',
   async asyncData () {
     const articles = (await directus.items('article').read({
       fields: ['title', 'short_desc', 'slug', 'user_created.*', 'date_created'],

@@ -176,4 +176,8 @@ export default {
   background-image: linear-gradient(#6C7BFF, #00A3FF);
   z-index: 0;
 }
+
+ *,*:focus,*:hover{
+   outline:none;
+ }
 </style>

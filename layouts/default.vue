@@ -8,7 +8,7 @@
 
 <script>
 import Footer from '@/layouts/Footer'
-import Header from '~/layouts/Header'
+import Header from '@/layouts/Header'
 export default {
   components: { Footer, Header },
   mounted () {

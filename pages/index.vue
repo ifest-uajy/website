@@ -34,29 +34,24 @@ import directus from '@/plugins/directus'
 
 export default {
   name: 'Home',
+  async asyncData () {
+    const articles = (await directus.items('article').read({
+      limit: 2,
+      sort: '-date_created'
+    })).data
+    const faqs = (await directus.items('faq').read()).data
+    return { articles, faqs }
+  },
   data () {
     return {
       articles: {},
       faqs: {}
     }
   },
-  beforeMount () {
-    this.getArticles()
-    this.getFAQs()
-  },
   methods: {
-    getArticles () {
-      directus.items('article').read({
-        limit: 3,
-        sort: '-date_created'
-      }).then((data) => {
-        this.articles = data.data
-      })
-    },
-    getFAQs () {
-      directus.items('faq').read().then((data) => {
-        this.faqs = data.data
-      })
+    formatDate (date) {
+      moment.locale('id')
+      return moment(date).format('LL')
     }
   }
 }

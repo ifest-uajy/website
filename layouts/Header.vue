@@ -1,14 +1,12 @@
 <template>
   <div class="container ifest-header">
-    <b-navbar id="nav" class="navbar fixed-top navbar-light bg-light navbar-expand-lg ifest-nav">
+    <b-navbar id="nav" class="navbar fixed-top navbar-light bg-light ifest-nav" toggleable="lg">
       <div class="container">
-        <b-navbar-toggle target="nav-collapse" />
+        <b-navbar-brand to="/">
+          <img id="logo-image" class="ifest-header--image-logo" :src="images.logo" alt="Logo">
+        </b-navbar-brand>
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-brand to="/">
-            <NuxtLink to="/">
-              <img id="logo-image" class="ifest-header--image-logo" :src="images.logo" alt="Logo">
-            </NuxtLink>
-          </b-navbar-brand>
           <b-navbar-nav class="ml-auto">
             <b-nav-item-dropdown text="Competition" :disabled="competitions.length <= 0">
               <b-dropdown-item
@@ -83,10 +81,5 @@ export default {
   padding-bottom: 5px;
   box-shadow: 0px 3px 5px rgb(245 246 245);
   transition: .5s;
-}
-.image-hidden {
-  visibility: hidden;
-  opacity: 0;
-  transition: .1s;
 }
 </style>

@@ -9,7 +9,11 @@
                 Competitions
               </p>
               <p v-for="(competition, k) in competitions" :key="k">
-                {{ competition.event_name }}
+                <NuxtLink :to="`/competition/` + competition.slug">
+                  <span class="text-light" style="display: inline-block;text-decoration:none;">
+                    {{ competition.event_name }}
+                  </span>
+                </NuxtLink>
               </p>
               <p v-if="competitions === {}">
                 Coming Soon
@@ -73,17 +77,10 @@ export default {
       events: []
     }
   },
-  beforeMount () {
-    this.getCompetitions()
-  },
-  methods: {
-    getCompetitions () {
-      directus.items('competition').read({
-        fields: 'event_name'
-      }).then((data) => {
-        this.competitions = data.data
-      })
-    }
+  async fetch () {
+    this.competitions = (await directus.items('competition').read({
+      fields: ['event_name', 'slug']
+    })).data
   }
 }
 </script>
